@@ -1,0 +1,200 @@
+[
+    {
+        "id": "sofra",
+        "title": "Sofra & Sunum",
+        "subs": [
+            {
+                "title": "Porselen Grubu",
+                "desc": "Bonna, Porland ve Kütahya Porselen'in en seçkin otel serileri.",
+                "tag": "ÖZEL SEÇKİ",
+                "img": "assets/sub-porselen.png"
+            },
+            {
+                "title": "Kristal Cam",
+                "desc": "Paşabahçe ve Schott Zwiesel'in zamansız tasarımları.",
+                "tag": "ZARAFET",
+                "img": "assets/sub-cam.png"
+            },
+            {
+                "title": "Paslanmaz Çelik",
+                "desc": "18/10 kusursuz polisajlı çatal bıçak takımları.",
+                "tag": "DAYANIKLI",
+                "img": "assets/sub-catal.png"
+            }
+        ]
+    },
+    {
+        "id": "mutfak",
+        "title": "Mutfak Ekipmanları",
+        "subs": [
+            {
+                "title": "Pişirme Üniteleri",
+                "desc": "Endüstriyel mutfakların kalbi, yüksek performanslı cihazlar.",
+                "tag": "PROFESYONEL",
+                "img": "assets/cat-mutfak.png"
+            },
+            {
+                "title": "Hazırlık Ekipmanı",
+                "desc": "Verimliliği artıran profesyonel kesim ve robot sistemleri.",
+                "tag": "TEKNOLOJİ",
+                "img": "assets/cat-mutfak.png"
+            }
+        ]
+    },
+    {
+        "id": "tekstil",
+        "title": "Tekstil & Yatak",
+        "subs": [
+            {
+                "title": "Nevresim & Pike",
+                "desc": "Yüksek iplik sayılı pamuk saten premium tekstil.",
+                "tag": "LÜKS",
+                "img": "assets/cat-tekstil.png"
+            },
+            {
+                "title": "Havlu & Bornoz",
+                "desc": "Hızlı kuruyan, ekstra yumuşak otel tipi dokumalar.",
+                "tag": "KONFOR",
+                "img": "assets/cat-tekstil.png"
+            }
+        ]
+    },
+    {
+        "id": "koku",
+        "title": "Ambiyans & Koku",
+        "subs": [
+            {
+                "title": "Kurumsal Kokular",
+                "desc": "İşletmenizin imza kokusunu yaratan dijital sistemler.",
+                "tag": "AMBİYANS",
+                "img": "assets/sub-koku-genis.png"
+            },
+            {
+                "title": "Oda Parfümleri",
+                "desc": "Misafir deneyimini unutulmaz kılan ferah esanslar.",
+                "tag": "TAZELİK",
+                "img": "assets/sub-koku-dekor.png"
+            }
+        ]
+    },
+    {
+        "id": "housekeeping",
+        "title": "Housekeeping",
+        "subs": [
+            {
+                "title": "Mini Bar Üniteleri",
+                "desc": "Sessiz çalışma prensibi ve şık tasarımlar.",
+                "tag": "GÜVENİLİR",
+                "img": "assets/sub-housekeeping.png"
+            },
+            {
+                "title": "Servis Arabaları",
+                "desc": "Operasyonel hızı artıran ergonomik taşıma çözümlerini sağlar.",
+                "tag": "VERİMLİLİK",
+                "img": "assets/sub-araba.png"
+            }
+        ]
+    },
+    {
+        "id": "bar",
+        "title": "Bar & Servis",
+        "subs": [
+            {
+                "title": "Miksoloji Setleri",
+                "desc": "Barmenler için profesyonel hazırlık araçları.",
+                "tag": "USTALIK",
+                "img": "assets/cat-bar.png"
+            },
+            {
+                "title": "Shot & Sunum",
+                "desc": "Gece hayatı ve cafe konseptlerine özel cam seriler.",
+                "tag": "MODERN",
+                "img": "assets/cat-bar.png"
+            }
+        ]
+    },
+    {
+        "id": "reklam",
+        "title": "Tanıtım & Deri",
+        "subs": [
+            {
+                "title": "Menü Kapları",
+                "desc": "Özel tasarım deri ve ahşap menü çalışmaları.",
+                "tag": "TASARIM",
+                "img": "assets/sub-anahtarlik.png"
+            },
+            {
+                "title": "Yönlendirme",
+                "desc": "Klasik ve dijital oda numarası - tabela çözümleri.",
+                "tag": "KURUMSAL",
+                "img": "assets/sub-yonlendirme.png"
+            }
+        ]
+    },
+    {
+        "id": "bufe",
+        "title": "Açık Büfe",
+        "subs": [
+            {
+                "title": "Teşhir Standları",
+                "desc": "Görsel şölene dönüşen katlı sunum üniteleri.",
+                "tag": "TEŞHİR",
+                "img": "assets/sub-teshir.png"
+            },
+            {
+                "title": "Chafing Dish",
+                "desc": "Isı korumalı modern kapaklı sunum kapları.",
+                "tag": "ISITMA",
+                "img": "assets/cat-bufe.png"
+            }
+        ]
+    },
+    {
+        "id": "mobilya",
+        "title": "Dış Mekan",
+        "subs": [
+            {
+                "title": "Rattan & Alüminyum",
+                "desc": "Hava koşullarına tam dayanıklı bahçe mobilyaları.",
+                "tag": "DIŞ MEKAN",
+                "img": "assets/sub-bufe.jpg"
+            }
+        ]
+    },
+    {
+        "id": "teknik",
+        "title": "Hırdavat & Teknik",
+        "subs": [
+            {
+                "title": "Temizlik Araçları",
+                "desc": "Endüstriyel temizlik makineleri ve aparatları.",
+                "tag": "HİJYEN",
+                "img": "assets/sub-konteyner.png"
+            }
+        ]
+    },
+    {
+        "id": "proje",
+        "title": "Özel Projeler",
+        "subs": [
+            {
+                "title": "Anahtar Teslim",
+                "desc": "Danışmanlıktan kuruluma komple proje yönetimi.",
+                "tag": "UZMAN",
+                "img": "assets/about-banner.jpg"
+            }
+        ]
+    },
+    {
+        "id": "katalog",
+        "title": "Dijital Katalog",
+        "subs": [
+            {
+                "title": "PDF İNDİR",
+                "desc": "Tüm güncel ürün listelerimize tek tıkla ulaşın.",
+                "tag": "İNDİR",
+                "img": "assets/products-banner.png"
+            }
+        ]
+    }
+]

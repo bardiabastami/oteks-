@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referanslarımız - Oteks Premium Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* References Special Styles */
+        body {
+            background: var(--bg-dark);
+        }
+
+        .ots-banner {
+            height: 45vh;
+            background: url('assets/references-banner.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 60px 8%;
+            position: relative;
+        }
+
+        .ots-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0.1));
+        }
+
+        .ots-banner h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: -4px;
+            line-height: 0.9;
+        }
+
+        .ots-ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .ots-ref-card {
+            background: #0a0a0a;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            border: 0.5px solid transparent;
+        }
+
+        .ots-ref-card:hover {
+            background: #000;
+            z-index: 10;
+            transform: scale(1.05);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            border-color: var(--primary);
+        }
+
+        .ots-ref-card span {
+            font-weight: 800;
+            color: #fff;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .ots-ref-card:hover span {
+            opacity: 1;
+            color: var(--primary);
+            letter-spacing: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .ots-banner h1 {
+                font-size: 48px;
+            }
+
+            .ots-ref-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body class="ots-standardized">
+
+    <header class="ots-header">
+        <div class="ots-logo"><a href="index.html"><img src="assets/logo.jpg" alt="OTEKS LOGO"></a></div>
+        <nav class="ots-nav">
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="urunlerimiz.html">Ürünler</a>
+            <a href="teklif-al.html">Teklif Al</a>
+            <a href="referanslarimiz.html" class="active">İletişim</a>
+        </nav>
+        <button class="ots-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <div class="ots-mobile-nav">
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="urunlerimiz.html">Ürünler</a>
+        <a href="teklif-al.html">Teklif Al</a>
+        <a href="referanslarimiz.html" class="active">İletişim</a>
+    </div>
+
+    <div class="ots-banner">
+        <h1>REFERANSLAR</h1>
+    </div>
+
+    <section class="ots-section">
+        <div class="ots-ref-container">
+            <h2
+                style="font-size:14px; color:var(--primary); text-transform:uppercase; letter-spacing:4px; font-weight:800; margin-bottom:40px;">
+                SEÇKİN İŞ ORTAKLARIMIZ</h2>
+            <div class="ots-ref-grid">
+                <div class="ots-ref-card"><span>Global Hotel</span></div>
+                <div class="ots-ref-card"><span>Azure Resort</span></div>
+                <div class="ots-ref-card"><span>Elite Cafe</span></div>
+                <div class="ots-ref-card"><span>Grand Palace</span></div>
+                <div class="ots-ref-card"><span>Sky Lounge</span></div>
+                <div class="ots-ref-card"><span>Marine Club</span></div>
+                <div class="ots-ref-card"><span>Royal Suites</span></div>
+                <div class="ots-ref-card"><span>Vista Dine</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="ots-footer">
+        <p>OTEKS Professional Hospitality Solutions &copy; 2026</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

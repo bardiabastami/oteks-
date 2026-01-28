@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teklif Al - Oteks Premium Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Offer Page Special Layout */
+        body {
+            background: var(--bg-dark);
+        }
+
+        .ots-offer-hero {
+            height: 50vh;
+            background: url('assets/offer-banner.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px 8%;
+            position: relative;
+        }
+
+        .ots-offer-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0.1));
+        }
+
+        .ots-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ots-form-section {
+            padding: 80px 8% 120px;
+        }
+
+        .ots-container-form {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 100px;
+            padding: 0;
+        }
+
+        .ots-pitch h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            line-height: 1.1;
+        }
+
+        .ots-feature {
+            margin-bottom: 40px;
+            border-left: 2px solid var(--primary);
+            padding-left: 25px;
+        }
+
+        .ots-feature h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .ots-feature p {
+            color: var(--text-light);
+            opacity: 0.6;
+        }
+
+        .ots-form-box {
+            background: #0a0a0a;
+            padding: 60px;
+            border: 1px solid var(--border);
+        }
+
+        .ots-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 50px;
+        }
+
+        .ots-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ots-input-group label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .ots-input-group input,
+        .ots-input-group select,
+        .ots-input-group textarea {
+            padding: 20px;
+            background: #111;
+            border: 1px solid #222;
+            color: #fff;
+            font-family: inherit;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .ots-input-group input:focus {
+            border-color: var(--primary);
+            background: #000;
+            outline: none;
+        }
+
+        .ots-btn-submit {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 25px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .ots-btn-submit:hover {
+            background: #fff;
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 1024px) {
+            .ots-container-form {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body class="ots-standardized">
+
+    <header class="ots-header">
+        <div class="ots-logo"><a href="index.html"><img src="assets/logo.jpg" alt="OTEKS LOGO"></a></div>
+        <nav class="ots-nav">
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="urunlerimiz.html">Ürünler</a>
+            <a href="teklif-al.html" class="active">Teklif Al</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+        <button class="ots-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <div class="ots-mobile-nav">
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="urunlerimiz.html">Ürünler</a>
+        <a href="teklif-al.html" class="active">Teklif Al</a>
+        <a href="iletisim.html">İletişim</a>
+    </div>
+
+    <div class="ots-offer-hero">
+        <div class="ots-hero-content">
+            <p>KURUMSAL İŞBİRLİĞİ</p>
+            <h1>TEKLİF ALIN</h1>
+        </div>
+    </div>
+
+    <section class="ots-section">
+        <div class="ots-container-form">
+            <div class="ots-pitch">
+                <h2>İşletmenizi <br><span style="color:var(--primary)">Zirveye</span> Taşıyın</h2>
+                <p style="opacity:0.6; margin-bottom:40px;">Profesyonel projeleriniz için global standartlarda ekipman
+                    tedariği sağlıyoruz.</p>
+                <div class="ots-feature">
+                    <h4>HIZLI SÜREÇ</h4>
+                    <p>24 saat içerisinde detaylı ürün teklifi.</p>
+                </div>
+                <div class="ots-feature">
+                    <h4>PROJE DESTEĞİ</h4>
+                    <p>Mutfak ve sunum konsepti için ücretsiz ürün seçimi desteği.</p>
+                </div>
+            </div>
+
+            <form class="ots-form-box">
+                <div class="ots-form-grid">
+                    <div class="ots-input-group"><label>YETKİLİ ADI</label><input type="text" placeholder="Ad Soyad"
+                            required></div>
+                    <div class="ots-input-group"><label>E-POSTA</label><input type="email"
+                            placeholder="kurumsal@sirket.com" required></div>
+                    <div class="ots-input-group"><label>GSM NO</label><input type="tel" placeholder="+90 5XX XXX XXXX">
+                    </div>
+                    <div class="ots-input-group"><label>KATEGORİ</label>
+                        <select>
+                            <option>Sofra & Sunum</option>
+                            <option>Mutfak Ekipmanları</option>
+                            <option>Tekstil Grupları</option>
+                            <option>Koku & Ambiyans</option>
+                        </select>
+                    </div>
+                    <div class="ots-input-group" style="grid-column: 1/-1;"><label>PROJE DETAYLARI</label><textarea
+                            rows="5" placeholder="Taleplerinizi belirtiniz..."></textarea></div>
+                </div>
+                <button type="submit" class="ots-btn-submit">TEKLİF TALEBİ GÖNDER →</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="ots-footer">
+        <p>OTEKS Professional Solutions &copy; 2026</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

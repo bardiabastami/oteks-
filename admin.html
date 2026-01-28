@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTEKS Admin - Ürün Yönetimi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: #050505;
+            color: #fff;
+            padding-top: 100px;
+            cursor: default;
+        }
+
+        .ots-admin-header {
+            padding: 40px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .ots-admin-title h1 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .ots-admin-title p {
+            color: var(--primary);
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .ots-admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 8% 120px;
+        }
+
+        .ots-category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .ots-category-card {
+            background: #0a0a0a;
+            border: 1px solid var(--border);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .ots-category-card:hover {
+            border-color: var(--primary);
+        }
+
+        .ots-cat-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .ots-cat-head h2 {
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .ots-product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .ots-admin-item {
+            background: #111;
+            padding: 20px;
+            border: 1px solid #222;
+        }
+
+        .ots-field {
+            margin-bottom: 15px;
+        }
+
+        .ots-field label {
+            display: block;
+            font-size: 10px;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .ots-field input,
+        .ots-field textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .ots-field input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .ots-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .ots-btn {
+            padding: 12px 20px;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .ots-btn-save {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .ots-btn-save:hover {
+            background: #fff;
+        }
+
+        .ots-btn-delete {
+            background: transparent;
+            border: 1px solid #444;
+            color: #ff4444;
+        }
+
+        .ots-btn-delete:hover {
+            background: #ff4444;
+            color: #fff;
+            border-color: #ff4444;
+        }
+
+        .ots-btn-add {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .ots-btn-add:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .ots-save-all {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            padding: 25px 50px;
+            background: var(--primary);
+            color: #000;
+            font-weight: 800;
+            letter-spacing: 4px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .ots-save-all:hover {
+            transform: translateY(-5px);
+            background: #fff;
+        }
+
+        /* Login Overlay */
+        #ots-admin-login {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ots-login-box {
+            width: 400px;
+            text-align: center;
+        }
+
+        .ots-login-box h2 {
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body class="ots-standardized">
+    <div id="ots-admin-login">
+        <div class="ots-login-box">
+            <p style="color:var(--primary); font-weight:800; letter-spacing:4px; margin-bottom:10px;">GÜVENLİ GİRİŞ</p>
+            <h2>OTEKS PANEL</h2>
+            <div class="ots-field">
+                <input type="password" id="ots-admin-pass" placeholder="Yönetici Şifresi"
+                    style="text-align:center; font-size:18px;">
+            </div>
+            <button class="ots-btn ots-btn-save" style="width:100%;" onclick="checkAuth()">GİRİŞ YAP</button>
+        </div>
+    </div>
+
+    <header class="ots-admin-header">
+        <div class="ots-admin-title">
+            <p>OTEKS PREMIUM SOLUTIONS</p>
+            <h1>YÖNETİM PANELİ</h1>
+        </div>
+        <div>
+            <a href="urunlerimiz.html" class="ots-btn" style="color:var(--primary);">SİTEYİ GÖRÜNTÜLE</a>
+        </div>
+    </header>
+
+    <div class="ots-admin-container">
+        <div id="ots-admin-mount" class="ots-category-list">
+            <!-- Dynamic Content -->
+        </div>
+        <button class="ots-btn ots-btn-add" onclick="addCategory()"
+            style="margin-top:40px; border-style:dashed; padding:30px;">+ YENİ KATEGORİ EKLE</button>
+    </div>
+
+    <button class="ots-btn ots-save-all" onclick="saveAll()">DEĞİŞİKLİKLERİ KAYDET</button>
+
+    <script>
+        const initialData = [
+            {
+                id: 'sofra', title: 'Sofra & Sunum', subs: [
+                    { title: 'Porselen Grubu', desc: 'Bonna, Porland ve Kütahya Porselen\'in en seçkin otel serileri.', tag: 'ÖZEL SEÇKİ', img: 'assets/sub-porselen.png', link: '#' },
+                    { title: 'Kristal Cam', desc: 'Paşabahçe ve Schott Zwiesel\'in zamansız tasarımları.', tag: 'ZARAFET', img: 'assets/sub-cam.png', link: '#' },
+                    { title: 'Paslanmaz Çelik', desc: '18/10 kusursuz polisajlı chatal bıçak takımları.', tag: 'DAYANIKLI', img: 'assets/sub-catal.png', link: '#' }
+                ]
+            },
+            {
+                id: 'mutfak', title: 'Mutfak Ekipmanları', subs: [
+                    { title: 'Pişirme Üniteleri', desc: 'Endüstriyel mutfakların kalbi, high-performance appliances.', tag: 'PROFESYONEL', img: 'assets/cat-mutfak.png', link: '#' },
+                    { title: 'Hazırlık Ekipmanı', desc: 'Verimliliği artıran profesyonel kesim ve robot sistemleri.', tag: 'TEKNOLOJİ', img: 'assets/cat-mutfak.png', link: '#' }
+                ]
+            },
+            {
+                id: 'tekstil', title: 'Tekstil & Yatak', subs: [
+                    { title: 'Nevresim & Pike', desc: 'Yüksek iplik sayılı pamuk saten premium tekstil.', tag: 'LÜKS', img: 'assets/cat-tekstil.png', link: '#' },
+                    { title: 'Havlu & Bornoz', desc: 'Hızlı kuruyan, extra soft textures for premium comfort.', tag: 'KONFOR', img: 'assets/cat-tekstil.png', link: '#' }
+                ]
+            },
+            {
+                id: 'koku', title: 'Ambiyans & Koku', subs: [
+                    { title: 'Kurumsal Kokular', desc: 'İşletmenizin imza kokusunu yaratan dijital sistemler.', tag: 'AMBİYANS', img: 'assets/sub-koku-genis.png', link: '#' },
+                    { title: 'Oda Parfümleri', desc: 'Misafir deneyimini unutulmaz kılan ferah esanslar.', tag: 'TAZELİK', img: 'assets/sub-koku-dekor.png', link: '#' }
+                ]
+            },
+            {
+                id: 'housekeeping', title: 'Housekeeping', subs: [
+                    { title: 'Mini Bar Üniteleri', desc: 'Quiet operation and sleek aesthetic designs.', tag: 'GÜVENİLİR', img: 'assets/sub-housekeeping.png', link: '#' },
+                    { title: 'Servis Arabaları', desc: 'Operasyonel hızı artıran ergonomik taşıma çözümlerini sağlar.', tag: 'VERİMLİLİK', img: 'assets/sub-araba.png', link: '#' }
+                ]
+            },
+            {
+                id: 'bar', title: 'Bar & Servis', subs: [
+                    { title: 'Miksoloji Setleri', desc: 'Professional preparation tools for expert bartenders.', tag: 'USTALIK', img: 'assets/cat-bar.png', link: '#' },
+                    { title: 'Shot & Sunum', desc: 'Gece hayatı ve cafe konseptlerine özel cam seriler.', tag: 'MODERN', img: 'assets/cat-bar.png', link: '#' }
+                ]
+            },
+            {
+                id: 'reklam', title: 'Tanıtım & Deri', subs: [
+                    { title: 'Menü Kapları', desc: 'Özel tasarım deri ve ahşap menü çalışmaları.', tag: 'TASARIM', img: 'assets/sub-anahtarlik.png', link: '#' },
+                    { title: 'Yönlendirme', desc: 'Klasik ve dijital oda numarası - tabela çözümleri.', tag: 'KURUMSAL', img: 'assets/sub-yonlendirme.png', link: '#' }
+                ]
+            },
+            {
+                id: 'bufe', title: 'Açık Büfe', subs: [
+                    { title: 'Teşhir Standları', desc: 'Görsel şölene dönüşen katlı sunum üniteleri.', tag: 'TEŞHİR', img: 'assets/sub-teshir.png', link: '#' },
+                    { title: 'Chafing Dish', desc: 'Isı korumalı modern kapaklı sunum kapları.', tag: 'ISITMA', img: 'assets/cat-bufe.png', link: '#' }
+                ]
+            },
+            {
+                id: 'mobilya', title: 'Dış Mekan', subs: [
+                    { title: 'Rattan & Alüminyum', desc: 'Hava koşullarına tam dayanıklı bahçe mobilyaları.', tag: 'DIŞ MEKAN', img: 'assets/sub-bufe.jpg', link: '#' }
+                ]
+            },
+            {
+                id: 'teknik', title: 'Hırdavat & Teknik', subs: [
+                    { title: 'Temizlik Araçları', desc: 'Endüstriyel temizlik makineleri ve aparatları.', tag: 'HİJYEN', img: 'assets/sub-konteyner.png', link: '#' }
+                ]
+            },
+            {
+                id: 'proje', title: 'Özel Projeler', subs: [
+                    { title: 'Anahtar Teslim', desc: 'Danışmanlıktan kuruluma komple proje yönetimi.', tag: 'UZMAN', img: 'assets/about-banner.jpg', link: '#' }
+                ]
+            },
+            {
+                id: 'katalog', title: 'Dijital Katalog', subs: [
+                    { title: 'PDF İNDİR', desc: 'Tüm güncel ürün listelerimize tek tıkla ulaşın.', tag: 'İNDİR', img: 'assets/products-banner.png', link: '#' }
+                ]
+            }
+        ];
+
+        let currentData = initialData;
+
+        function checkAuth() {
+            const pass = document.getElementById('ots-admin-pass').value;
+            if (pass === 'oteks2026') {
+                document.getElementById('ots-admin-login').style.display = 'none';
+                renderAdmin();
+                loadData();
+            } else {
+                alert('Hatalı şifre!');
+            }
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch('data/products.json');
+                if (response.ok) {
+                    currentData = await response.json();
+                    renderAdmin();
+                }
+            } catch (error) {
+                console.warn('Running in static mode.');
+            }
+        }
+
+        function renderAdmin() {
+            const mount = document.getElementById('ots-admin-mount');
+            mount.innerHTML = '';
+
+            currentData.forEach((cat, catIdx) => {
+                const catCard = document.createElement('div');
+                catCard.className = 'ots-category-card';
+
+                let html = `
+                    <div class="ots-cat-head" style="display:flex; justify-content:space-between; align-items:center;">
+                        <div class="ots-field" style="margin:0; flex-grow:1; margin-right:40px;">
+                            <label>KATEGORİ BAŞLIĞI</label>
+                            <input type="text" value="${cat.title}" onchange="updateCatTitle(${catIdx}, this.value)">
+                        </div>
+                        <button class="ots-btn ots-btn-delete" style="width:auto; padding:10px 20px; font-size:10px;" onclick="deleteCategory(${catIdx})">KATEGORİYİ SİL</button>
+                    </div>
+                    <div class="ots-product-list">
+                `;
+
+                cat.subs.forEach((sub, subIdx) => {
+                    html += `
+                        <div class="ots-admin-item">
+                            <div class="ots-field"><label>ÜRÜN ADI</label><input type="text" value="${sub.title}" onchange="updateSub(${catIdx}, ${subIdx}, 'title', this.value)"></div>
+                            <div class="ots-field"><label>AÇIKLAMA</label><textarea onchange="updateSub(${catIdx}, ${subIdx}, 'desc', this.value)">${sub.desc}</textarea></div>
+                            <div class="ots-field"><label>ETİKET (TAG)</label><input type="text" value="${sub.tag}" onchange="updateSub(${catIdx}, ${subIdx}, 'tag', this.value)"></div>
+                            <div class="ots-field"><label>RESİM YOLU</label><input type="text" value="${sub.img}" onchange="updateSub(${catIdx}, ${subIdx}, 'img', this.value)"></div>
+                            <div class="ots-field"><label>BUTON LİNKİ (URL)</label><input type="text" value="${sub.link || '#'}" onchange="updateSub(${catIdx}, ${subIdx}, 'link', this.value)"></div>
+                            <div class="ots-btn-group">
+                                <button class="ots-btn ots-btn-delete" onclick="deleteSub(${catIdx}, ${subIdx})">SİL</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>
+                    <button class="ots-btn ots-btn-add" onclick="addSub(${catIdx})">+ YENİ ÜRÜN EKLE</button>
+                `;
+
+                catCard.innerHTML = html;
+                mount.appendChild(catCard);
+            });
+        }
+
+        function updateCatTitle(idx, val) { currentData[idx].title = val; }
+        function updateSub(catIdx, subIdx, field, val) { currentData[catIdx].subs[subIdx][field] = val; }
+
+        function addSub(catIdx) {
+            currentData[catIdx].subs.push({ title: 'Yeni Ürün', desc: 'Ürün açıklaması...', tag: 'YENİ', img: 'assets/logo.jpg', link: '#' });
+            renderAdmin();
+        }
+
+        function deleteSub(catIdx, subIdx) {
+            if (confirm('Bu ürünü silmek istediğinize emin misiniz?')) {
+                currentData[catIdx].subs.splice(subIdx, 1);
+                renderAdmin();
+            }
+        }
+
+        function addCategory() {
+            const newId = 'cat_' + Date.now();
+            currentData.push({
+                id: newId,
+                title: 'Yeni Kategori',
+                subs: []
+            });
+            renderAdmin();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function deleteCategory(idx) {
+            if (confirm(`"${currentData[idx].title}" kategorisini ve içindeki TÜM ürünleri silmek istediğinize emin misiniz?`)) {
+                currentData.splice(idx, 1);
+                renderAdmin();
+            }
+        }
+
+        async function saveAll() {
+            try {
+                const response = await fetch('/api/products', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+                const result = await response.json();
+                if (result.success) alert('Başarıyla kaydedildi!');
+            } catch (error) {
+                alert('Kaydedilirken bir hata oluştu!');
+            }
+        }
+    </script>
+</body>
+
+</html>

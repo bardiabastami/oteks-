@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - Oteks Premium Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Contact Special Styles */
+        body {
+            background: var(--bg-dark);
+        }
+
+        .ots-contact-hero {
+            height: 50vh;
+            background: url('assets/contact-banner.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .ots-contact-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0.4));
+            z-index: 1;
+        }
+
+        .ots-contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 100px;
+            padding: 120px 8%;
+        }
+
+        .ots-contact-info h2 {
+            font-size: 14px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .ots-info-item {
+            margin-bottom: 50px;
+            border-left: 2px solid var(--primary);
+            padding-left: 30px;
+            transition: var(--transition);
+        }
+
+        .ots-info-item:hover {
+            border-left-width: 10px;
+            background: rgba(201, 160, 80, 0.05);
+        }
+
+        .ots-info-item label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .ots-info-item p {
+            font-size: 26px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .ots-socials {
+            display: flex;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 60px;
+            width: fit-content;
+        }
+
+        .ots-social-link {
+            width: 65px;
+            height: 65px;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            transition: var(--transition);
+            font-weight: 800;
+            font-size: 11px;
+        }
+
+        .ots-social-link:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-8px);
+        }
+
+        .ots-map-box {
+            background: #0a0a0a;
+            border: 1px solid var(--border);
+            height: 600px;
+            position: relative;
+        }
+
+        .ots-map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .ots-map-placeholder svg {
+            opacity: 0.15;
+            transform: scale(4);
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .ots-contact-grid {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body class="ots-standardized">
+
+    <header class="ots-header">
+        <div class="ots-logo"><a href="index.html"><img src="assets/logo.jpg" alt="OTEKS LOGO"></a></div>
+        <nav class="ots-nav">
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="urunlerimiz.html">Ürünler</a>
+            <a href="teklif-al.html">Teklif Al</a>
+            <a href="iletisim.html" class="active">İletişim</a>
+        </nav>
+        <button class="ots-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <div class="ots-mobile-nav">
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="urunlerimiz.html">Ürünler</a>
+        <a href="teklif-al.html">Teklif Al</a>
+        <a href="iletisim.html" class="active">İletişim</a>
+    </div>
+
+    <div class="ots-contact-hero">
+        <h1>İLETİŞİM</h1>
+    </div>
+
+    <section class="ots-contact-grid">
+        <div class="ots-contact-info">
+            <h2>BİZE ULAŞIN</h2>
+            <div class="ots-info-item"><label>LOJİSTİK & SHOWROOM</label>
+                <p>Atatürk Cad. No. 238 / GİRNE</p>
+            </div>
+            <div class="ots-info-item"><label>İLETİŞİM HATTI</label>
+                <p>+90 548 879 6000</p>
+            </div>
+            <div class="ots-info-item"><label>E-POSTA</label>
+                <p>info@oteks.net</p>
+            </div>
+            <div class="ots-socials">
+                <a href="#" class="ots-social-link">INST</a><a href="#" class="ots-social-link">FACE</a><a href="#"
+                    class="ots-social-link">LINK</a>
+            </div>
+        </div>
+        <div class="ots-map-box">
+            <div class="ots-map-placeholder">
+                <div>
+                    <svg width="60" height="60" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                    </svg>
+                    <p
+                        style="text-transform:uppercase; letter-spacing:6px; font-weight:800; margin-top:30px; color:var(--primary);">
+                        GİRNE MERKEZ KONUMU</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="ots-footer">
+        <p>OTEKS Professional Hospitality Solutions &copy; 2026</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

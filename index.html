@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oteks - Premium Hospitality Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Landing-Specific Overrides */
+        body {
+            overflow: hidden;
+            height: 100vh;
+            background: #000;
+            cursor: none;
+        }
+
+        * {
+            cursor: none;
+        }
+
+        /* Loader */
+        #ots-loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1.2s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.8s ease;
+        }
+
+        .ots-loader-logo {
+            width: 140px;
+            filter: invert(1);
+            opacity: 0;
+            animation: ots-loader-reveal 2s forwards;
+        }
+
+        @keyframes ots-loader-reveal {
+            0% {
+                transform: scale(1.1);
+                opacity: 0;
+                filter: blur(30px);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+                filter: blur(0px);
+            }
+        }
+
+        body.loaded #ots-loader {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        /* Grid Layout */
+        .ots-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            width: 100vw;
+            height: 100vh;
+            gap: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease 0.5s;
+            perspective: 2000px;
+        }
+
+        body.loaded .ots-grid-container {
+            opacity: 1;
+        }
+
+        .ots-grid-item {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: #000;
+            border: 0.5px solid var(--border);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .ots-grid-item img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .ots-grid-item:hover img {
+            filter: brightness(0.85);
+            transform: scale(1.05) translateZ(30px);
+        }
+
+        .ots-grid-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+        }
+
+        .ots-grid-item:hover .ots-grid-content {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateZ(70px);
+        }
+
+        .ots-grid-title {
+            font-size: clamp(14px, 1.8vw, 18px);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            color: #fff;
+            transition: var(--transition);
+        }
+
+        .ots-grid-item:hover .ots-grid-title {
+            color: var(--primary);
+            letter-spacing: 16px;
+            text-shadow: 0 0 30px rgba(201, 160, 80, 0.4);
+        }
+
+        .ots-grid-logo {
+            background: #000;
+            z-index: 5;
+        }
+
+        .ots-grid-logo img {
+            width: 40%;
+            filter: invert(1) brightness(2.5) !important;
+            object-fit: contain;
+            margin-bottom: 30px;
+        }
+
+        .ots-logo-text {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .ots-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+
+            * {
+                cursor: auto !important;
+            }
+
+            #ots-cursor {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .ots-grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+                overflow-y: auto;
+            }
+
+            .ots-grid-item {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body class="ots-standardized">
+    <div id="ots-cursor"></div>
+
+    <header class="ots-header">
+        <div class="ots-logo"><a href="index.html"><img src="assets/logo.jpg" alt="OTEKS LOGO"></a></div>
+        <nav class="ots-nav">
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="urunlerimiz.html">Ürünler</a>
+            <a href="teklif-al.html">Teklif Al</a>
+            <a href="iletisim.html">İletişim</a>
+        </nav>
+        <button class="ots-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <div class="ots-mobile-nav">
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="urunlerimiz.html">Ürünler</a>
+        <a href="teklif-al.html">Teklif Al</a>
+        <a href="iletisim.html">İletişim</a>
+    </div>
+
+    <div id="ots-loader"><img src="assets/logo.jpg" class="ots-loader-logo" alt="OTEKS"></div>
+
+    <div class="ots-grid-container">
+        <a href="hakkimizda.html" class="ots-grid-item" data-tilt>
+            <img src="assets/hakkimizda.jpg" alt="Hakkımızda">
+            <div class="ots-grid-content"><span class="ots-grid-title">HAKKIMIZDA</span></div>
+        </a>
+        <a href="urunlerimiz.html" class="ots-grid-item" data-tilt>
+            <img src="assets/urunler.jpg" alt="Ürünler">
+            <div class="ots-grid-content"><span class="ots-grid-title">ÜRÜNLERİMİZ</span></div>
+        </a>
+        <a href="teklif-al.html" class="ots-grid-item" data-tilt>
+            <img src="assets/teklif.jpg" alt="Teklif Al">
+            <div class="ots-grid-content"><span class="ots-grid-title">TEKLİF AL</span></div>
+        </a>
+        <a href="referanslarimiz.html" class="ots-grid-item" data-tilt>
+            <img src="assets/referanslar.jpg" alt="Referanslar">
+            <div class="ots-grid-content"><span class="ots-grid-title">REFERANSLARIMIZ</span></div>
+        </a>
+        <div class="ots-grid-item ots-grid-logo">
+            <img src="assets/logo.jpg" alt="OTEKS LOGO"
+                style="width:50%; filter:invert(1) brightness(2); position:relative; object-fit:contain;">
+        </div>
+        <a href="iletisim.html" class="ots-grid-item" data-tilt>
+            <img src="assets/iletisim.jpg" alt="İletişim">
+            <div class="ots-grid-content"><span class="ots-grid-title">İLETİŞİM</span></div>
+        </a>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

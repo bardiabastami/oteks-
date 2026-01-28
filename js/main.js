@@ -1,8 +1,20 @@
-window.addEventListener('load', () => {
-    // Standard Loading Reveal
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 1200);
+// Loading Reveal Logic
+const revealSite = () => {
+    if (!document.body.classList.contains('loaded')) {
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 800);
+    }
+};
+
+// Main Initialization
+window.addEventListener('load', revealSite);
+
+// Failsafe: Reveal site after 4 seconds even if assets are still loading
+setTimeout(revealSite, 4000);
+
+// Set up UI interactions as soon as DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
 
     // Custom Cursor Logic
     const cursor = document.getElementById('ots-cursor');

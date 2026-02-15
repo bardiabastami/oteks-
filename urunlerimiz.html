@@ -28,54 +28,63 @@
         }
 
         .ots-categories-bar {
-            display: flex;
-            overflow-x: auto;
-            padding: 0 8%;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .ots-categories-bar::-webkit-scrollbar {
-            display: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            padding: 20px 8%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            /* Spacing between pills */
         }
 
         .ots-cat-btn {
-            background: none;
-            border: none;
-            color: #666;
-            padding: 30px 25px;
-            font-weight: 800;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            padding: 15px 10px;
+            font-weight: 600;
             font-size: 11px;
             cursor: pointer;
-            white-space: nowrap;
             transition: var(--transition);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
+            letter-spacing: 1px;
+            text-align: center;
+            border-radius: 4px;
+            /* Slight rounding for tiles */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         .ots-cat-btn:first-child {
-            padding-left: 0;
+            padding-left: 10px;
+            /* Reset */
         }
 
+        /* Remove the old bottom line effect */
         .ots-cat-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: var(--primary);
-            transition: var(--transition);
-            transform: translateX(-50%);
+            display: none;
         }
 
         .ots-cat-btn.active {
-            color: #fff;
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            font-weight: 800;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 160, 80, 0.2);
         }
 
-        .ots-cat-btn.active::after {
-            width: 100%;
+        .ots-cat-btn:hover {
+            border-color: var(--primary);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .ots-cat-btn.active:hover {
+            color: #000;
+            background: var(--primary);
         }
 
         .ots-cat-btn:hover {
@@ -110,8 +119,8 @@
 
         .ots-sub-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
             background: transparent;
         }
 
@@ -133,8 +142,8 @@
         .ots-card-img-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 125%;
-            /* 4:5 aspect ratio */
+            padding-top: 80%;
+            /* Landscape aspect ratio */
             overflow: hidden;
             background: #111;
         }
@@ -159,14 +168,14 @@
         /* Removed incele overlay */
 
         .ots-card-info {
-            padding: 30px;
+            padding: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .ots-card-info h3 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #fff;
@@ -174,10 +183,10 @@
 
         .ots-card-info p {
             color: #888;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            max-width: 95%;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            max-width: 100%;
         }
 
         .ots-card-meta {
@@ -198,22 +207,27 @@
         }
 
         .ots-btn-catalog {
-            color: #fff;
+            color: #000;
+            background: var(--primary);
+            padding: 6px 14px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             transition: var(--transition);
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            opacity: 0.6;
+            gap: 5px;
+            opacity: 1;
+            border-radius: 0;
+            line-height: 1;
         }
 
         .ots-btn-catalog:hover {
-            color: var(--primary);
-            opacity: 1;
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
         }
 
         @media (max-width: 1024px) {
@@ -227,13 +241,27 @@
                 font-size: 10px;
             }
         }
+
+        /* Custom Hero for Products */
+        .ots-page-hero {
+            background: url('assets/0 4 OUR PRODUCTS - CATEGORY BANNER.png') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .ots-page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
     </style>
 </head>
 
 <body class="ots-standardized">
 
     <header class="ots-header">
-        <div class="ots-logo"><a href="index.html"><img src="assets/logo.jpg" alt="OTEKS LOGO"></a></div>
+        <div class="ots-logo"><a href="index.html"><img src="oteks.svg" alt="OTEKS LOGO"></a></div>
         <nav class="ots-nav">
             <a href="hakkimizda.html">Hakkımızda</a>
             <a href="urunlerimiz.html" class="active">Ürünler</a>
@@ -273,72 +301,222 @@
     <script>
         const initialData = [
             {
-                id: 'sofra', title: 'Sofra & Sunum', subs: [
-                    { title: 'Porselen Grubu', desc: 'Bonna, Porland ve Kütahya Porselen\'in en seçkin otel serileri.', tag: 'ÖZEL SEÇKİ', img: 'assets/sub-porselen.png', link: '#' },
-                    { title: 'Kristal Cam', desc: 'Paşabahçe ve Schott Zwiesel\'in zamansız tasarımları.', tag: 'ZARAFET', img: 'assets/sub-cam.png', link: '#' },
-                    { title: 'Paslanmaz Çelik', desc: '18/10 kusursuz polisajlı çatal bıçak takımları.', tag: 'DAYANIKLI', img: 'assets/sub-catal.png', link: '#' }
+                "id": "sofra",
+                "title": "Sofra & Sunum",
+                "subs": [
+                    {
+                        "title": "Porselen Grubu",
+                        "desc": "Bonna, Porland ve Kütahya Porselen'in en seçkin otel serileri.",
+                        "tag": "ÖZEL SEÇKİ",
+                        "img": "assets/sub-porselen.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Kristal Cam",
+                        "desc": "Paşabahçe ve Schott Zwiesel'in zamansız tasarımları.",
+                        "tag": "ZARAFET",
+                        "img": "assets/sub-cam.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Paslanmaz Çelik",
+                        "desc": "18/10 kusursuz polisajlı çatal bıçak takımları.",
+                        "tag": "DAYANIKLI",
+                        "img": "assets/sub-catal.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'mutfak', title: 'Mutfak Ekipmanları', subs: [
-                    { title: 'Pişirme Üniteleri', desc: 'Endüstriyel mutfakların kalbi, yüksek performanslı cihazlar.', tag: 'PROFESYONEL', img: 'assets/cat-mutfak.png', link: '#' },
-                    { title: 'Hazırlık Ekipmanı', desc: 'Verimliliği artıran profesyonel kesim ve robot sistemleri.', tag: 'TEKNOLOJİ', img: 'assets/cat-mutfak.png', link: '#' }
+                "id": "mutfak",
+                "title": "Mutfak Ekipmanları",
+                "subs": [
+                    {
+                        "title": "Pişirme Üniteleri",
+                        "desc": "Endüstriyel mutfakların kalbi, yüksek performanslı cihazlar.",
+                        "tag": "PROFESYONEL",
+                        "img": "assets/cat-mutfak.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Hazırlık Ekipmanı",
+                        "desc": "Verimliliği artıran profesyonel kesim ve robot sistemleri.",
+                        "tag": "TEKNOLOJİ",
+                        "img": "assets/cat-mutfak.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'tekstil', title: 'Tekstil & Yatak', subs: [
-                    { title: 'Nevresim & Pike', desc: 'Yüksek iplik sayılı pamuk saten premium tekstil.', tag: 'LÜKS', img: 'assets/cat-tekstil.png', link: '#' },
-                    { title: 'Havlu & Bornoz', desc: 'Hızlı kuruyan, ekstra yumuşak otel tipi dokumalar.', tag: 'KONFOR', img: 'assets/cat-tekstil.png', link: '#' }
+                "id": "tekstil",
+                "title": "Tekstil & Yatak",
+                "subs": [
+                    {
+                        "title": "Nevresim & Pike",
+                        "desc": "Yüksek iplik sayılı pamuk saten premium tekstil.",
+                        "tag": "LÜKS",
+                        "img": "assets/cat-tekstil.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Havlu & Bornoz",
+                        "desc": "Hızlı kuruyan, ekstra yumuşak otel tipi dokumalar.",
+                        "tag": "KONFOR",
+                        "img": "assets/cat-tekstil.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'koku', title: 'Ambiyans & Koku', subs: [
-                    { title: 'Kurumsal Kokular', desc: 'İşletmenizin imza kokusunu yaratan dijital sistemler.', tag: 'AMBİYANS', img: 'assets/sub-koku-genis.png', link: '#' },
-                    { title: 'Oda Parfümleri', desc: 'Misafir deneyimini unutulmaz kılan ferah esanslar.', tag: 'TAZELİK', img: 'assets/sub-koku-dekor.png', link: '#' }
+                "id": "koku",
+                "title": "Ambiyans & Koku",
+                "subs": [
+                    {
+                        "title": "Kurumsal Kokular",
+                        "desc": "İşletmenizin imza kokusunu yaratan dijital sistemler.",
+                        "tag": "AMBİYANS",
+                        "img": "assets/sub-koku-genis.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Oda Parfümleri",
+                        "desc": "Misafir deneyimini unutulmaz kılan ferah esanslar.",
+                        "tag": "TAZELİK",
+                        "img": "assets/sub-koku-dekor.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'housekeeping', title: 'Housekeeping', subs: [
-                    { title: 'Mini Bar Üniteleri', desc: 'Sessiz çalışma prensibi ve şık tasarımlar.', tag: 'GÜVENİLİR', img: 'assets/sub-housekeeping.png', link: '#' },
-                    { title: 'Servis Arabaları', desc: 'Operasyonel hızı artıran ergonomik taşıma çözümlerini sağlar.', tag: 'VERİMLİLİK', img: 'assets/sub-araba.png', link: '#' }
+                "id": "housekeeping",
+                "title": "Housekeeping",
+                "subs": [
+                    {
+                        "title": "Mini Bar Üniteleri",
+                        "desc": "Sessiz çalışma prensibi ve şık tasarımlar.",
+                        "tag": "GÜVENİLİR",
+                        "img": "assets/sub-housekeeping.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Servis Arabaları",
+                        "desc": "Operasyonel hızı artıran ergonomik taşıma çözümlerini sağlar.",
+                        "tag": "VERİMLİLİK",
+                        "img": "assets/sub-araba.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'bar', title: 'Bar & Servis', subs: [
-                    { title: 'Miksoloji Setleri', desc: 'Barmenler için profesyonel hazırlık araçları.', tag: 'USTALIK', img: 'assets/cat-bar.png', link: '#' },
-                    { title: 'Shot & Sunum', desc: 'Gece hayatı ve cafe konseptlerine özel cam seriler.', tag: 'MODERN', img: 'assets/cat-bar.png', link: '#' }
+                "id": "bar",
+                "title": "Bar & Servis",
+                "subs": [
+                    {
+                        "title": "Miksoloji Setleri",
+                        "desc": "Barmenler için profesyonel hazırlık araçları.",
+                        "tag": "USTALIK",
+                        "img": "assets/cat-bar.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Shot & Sunum",
+                        "desc": "Gece hayatı ve cafe konseptlerine özel cam seriler.",
+                        "tag": "MODERN",
+                        "img": "assets/cat-bar.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'reklam', title: 'Tanıtım & Deri', subs: [
-                    { title: 'Menü Kapları', desc: 'Özel tasarım deri ve ahşap menü çalışmaları.', tag: 'TASARIM', img: 'assets/sub-anahtarlik.png', link: '#' },
-                    { title: 'Yönlendirme', desc: 'Klasik ve dijital oda numarası - tabela çözümleri.', tag: 'KURUMSAL', img: 'assets/sub-yonlendirme.png', link: '#' }
+                "id": "reklam",
+                "title": "Tanıtım & Deri",
+                "subs": [
+                    {
+                        "title": "Menü Kapları",
+                        "desc": "Özel tasarım deri ve ahşap menü çalışmaları.",
+                        "tag": "TASARIM",
+                        "img": "assets/sub-anahtarlik.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Yönlendirme",
+                        "desc": "Klasik ve dijital oda numarası - tabela çözümleri.",
+                        "tag": "KURUMSAL",
+                        "img": "assets/sub-yonlendirme.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'bufe', title: 'Açık Büfe', subs: [
-                    { title: 'Teşhir Standları', desc: 'Görsel şölene dönüşen katlı sunum üniteleri.', tag: 'TEŞHİR', img: 'assets/sub-teshir.png', link: '#' },
-                    { title: 'Chafing Dish', desc: 'Isı korumalı modern kapaklı sunum kapları.', tag: 'ISITMA', img: 'assets/cat-bufe.png', link: '#' }
+                "id": "bufe",
+                "title": "Açık Büfe",
+                "subs": [
+                    {
+                        "title": "Teşhir Standları",
+                        "desc": "Görsel şölene dönüşen katlı sunum üniteleri.",
+                        "tag": "TEŞHİR",
+                        "img": "assets/sub-teshir.png",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Chafing Dish",
+                        "desc": "Isı korumalı modern kapaklı sunum kapları.",
+                        "tag": "ISITMA",
+                        "img": "assets/cat-bufe.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'mobilya', title: 'Dış Mekan', subs: [
-                    { title: 'Rattan & Alüminyum', desc: 'Hava koşullarına tam dayanıklı bahçe mobilyaları.', tag: 'DIŞ MEKAN', img: 'assets/sub-bufe.jpg', link: '#' }
+                "id": "mobilya",
+                "title": "Dış Mekan",
+                "subs": [
+                    {
+                        "title": "Rattan & Alüminyum",
+                        "desc": "Hava koşullarına tam dayanıklı bahçe mobilyaları.",
+                        "tag": "DIŞ MEKAN",
+                        "img": "assets/sub-bufe.jpg",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'teknik', title: 'Hırdavat & Teknik', subs: [
-                    { title: 'Temizlik Araçları', desc: 'Endüstriyel temizlik makineleri ve aparatları.', tag: 'HİJYEN', img: 'assets/sub-konteyner.png', link: '#' }
+                "id": "teknik",
+                "title": "Hırdavat & Teknik",
+                "subs": [
+                    {
+                        "title": "Temizlik Araçları",
+                        "desc": "Endüstriyel temizlik makineleri ve aparatları.",
+                        "tag": "HİJYEN",
+                        "img": "assets/sub-konteyner.png",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'proje', title: 'Özel Projeler', subs: [
-                    { title: 'Anahtar Teslim', desc: 'Danışmanlıktan kuruluma komple proje yönetimi.', tag: 'UZMAN', img: 'assets/about-banner.jpg', link: '#' }
+                "id": "proje",
+                "title": "Özel Projeler",
+                "subs": [
+                    {
+                        "title": "Anahtar Teslim",
+                        "desc": "Danışmanlıktan kuruluma komple proje yönetimi.",
+                        "tag": "UZMAN",
+                        "img": "assets/about-banner.jpg",
+                        "link": "#"
+                    }
                 ]
             },
             {
-                id: 'katalog', title: 'Dijital Katalog', subs: [
-                    { title: 'PDF İNDİR', desc: 'Tüm güncel ürün listelerimize tek tıkla ulaşın.', tag: 'İNDİR', img: 'assets/products-banner.png', link: '#' }
+                "id": "katalog",
+                "title": "Dijital Katalog",
+                "subs": [
+                    {
+                        "title": "PDF İNDİR",
+                        "desc": "Tüm güncel ürün listelerimize tek tıkla ulaşın.",
+                        "tag": "İNDİR",
+                        "img": "assets/products-banner.png",
+                        "link": "#"
+                    }
                 ]
             }
         ];
@@ -393,7 +571,9 @@
                                 <p>${sub.desc}</p>
                                 <div class="ots-card-meta">
                                     <span class="ots-tag">${sub.tag}</span>
-                                    <a href="${sub.link || '#'}" target="_blank" class="ots-btn-catalog">KATALOG →</a>
+                                    <a href="${sub.link || '#'}" target="_blank" class="ots-btn-catalog" ${!sub.link ? 'onclick="alert(\'Katalog yakında eklenecek!\'); return false;"' : ''}>
+                                        KATALOG
+                                    </a>
                                 </div>
                             </div>
                         </div>`;
@@ -409,7 +589,7 @@
             btn.classList.add('active');
             document.querySelectorAll('.ots-category-section').forEach(s => s.classList.remove('active'));
             document.getElementById(`cat-${id}`).classList.add('active');
-            btn.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            // Removed scrollIntoView as requested for Mega Menu
         }
         window.onload = renderCatalog;
     </script>

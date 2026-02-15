@@ -197,7 +197,8 @@
         }
 
         .ots-login-box {
-            width: 400px;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
         }
 
@@ -226,6 +227,12 @@
         <div class="ots-admin-title">
             <p>OTEKS PREMIUM SOLUTIONS</p>
             <h1>YÖNETİM PANELİ</h1>
+            <div class="ots-btn-group" style="margin-top:20px;">
+                <button class="ots-btn" onclick="switchView('products')" id="btn-view-products"
+                    style="background:var(--primary); color:#000;">ÜRÜNLER</button>
+                <button class="ots-btn" onclick="switchView('references')" id="btn-view-references"
+                    style="opacity:0.5;">REFERANSLAR</button>
+            </div>
         </div>
         <div>
             <a href="urunlerimiz.html" class="ots-btn" style="color:var(--primary);">SİTEYİ GÖRÜNTÜLE</a>
@@ -233,89 +240,51 @@
     </header>
 
     <div class="ots-admin-container">
-        <div id="ots-admin-mount" class="ots-category-list">
-            <!-- Dynamic Content -->
+        <!-- PRODUCTS VIEW -->
+        <div id="ots-products-section">
+            <div id="ots-admin-mount" class="ots-category-list">
+                <!-- Dynamic Content -->
+            </div>
+            <button class="ots-btn ots-btn-add" onclick="addCategory()"
+                style="margin-top:40px; border-style:dashed; padding:30px;">+ YENİ KATEGORİ EKLE</button>
         </div>
-        <button class="ots-btn ots-btn-add" onclick="addCategory()"
-            style="margin-top:40px; border-style:dashed; padding:30px;">+ YENİ KATEGORİ EKLE</button>
+
+        <!-- REFERENCES VIEW -->
+        <div id="ots-references-section" style="display:none;">
+            <div id="ots-ref-mount" class="ots-product-list">
+                <!-- Dynamic Content -->
+            </div>
+            <button class="ots-btn ots-btn-add" onclick="addReference()"
+                style="margin-top:40px; border-style:dashed; padding:30px;">+ YENİ REFERANS EKLE</button>
+        </div>
     </div>
 
     <button class="ots-btn ots-save-all" onclick="saveAll()">DEĞİŞİKLİKLERİ KAYDET</button>
 
     <script>
+        // Check if running correctly
+        if (window.location.protocol === 'file:') {
+            alert('DİKKAT: Bu sayfayı doğrudan dosya olarak açtınız. Kaydetme özelliği çalışmaz.\n\nLütfen tarayıcınızda "http://localhost:3000/admin.html" adresine gidin.');
+        }
+
         const initialData = [
             {
-                id: 'sofra', title: 'Sofra & Sunum', subs: [
-                    { title: 'Porselen Grubu', desc: 'Bonna, Porland ve Kütahya Porselen\'in en seçkin otel serileri.', tag: 'ÖZEL SEÇKİ', img: 'assets/sub-porselen.png', link: '#' },
-                    { title: 'Kristal Cam', desc: 'Paşabahçe ve Schott Zwiesel\'in zamansız tasarımları.', tag: 'ZARAFET', img: 'assets/sub-cam.png', link: '#' },
-                    { title: 'Paslanmaz Çelik', desc: '18/10 kusursuz polisajlı chatal bıçak takımları.', tag: 'DAYANIKLI', img: 'assets/sub-catal.png', link: '#' }
-                ]
-            },
-            {
-                id: 'mutfak', title: 'Mutfak Ekipmanları', subs: [
-                    { title: 'Pişirme Üniteleri', desc: 'Endüstriyel mutfakların kalbi, high-performance appliances.', tag: 'PROFESYONEL', img: 'assets/cat-mutfak.png', link: '#' },
-                    { title: 'Hazırlık Ekipmanı', desc: 'Verimliliği artıran profesyonel kesim ve robot sistemleri.', tag: 'TEKNOLOJİ', img: 'assets/cat-mutfak.png', link: '#' }
-                ]
-            },
-            {
-                id: 'tekstil', title: 'Tekstil & Yatak', subs: [
-                    { title: 'Nevresim & Pike', desc: 'Yüksek iplik sayılı pamuk saten premium tekstil.', tag: 'LÜKS', img: 'assets/cat-tekstil.png', link: '#' },
-                    { title: 'Havlu & Bornoz', desc: 'Hızlı kuruyan, extra soft textures for premium comfort.', tag: 'KONFOR', img: 'assets/cat-tekstil.png', link: '#' }
-                ]
-            },
-            {
-                id: 'koku', title: 'Ambiyans & Koku', subs: [
-                    { title: 'Kurumsal Kokular', desc: 'İşletmenizin imza kokusunu yaratan dijital sistemler.', tag: 'AMBİYANS', img: 'assets/sub-koku-genis.png', link: '#' },
-                    { title: 'Oda Parfümleri', desc: 'Misafir deneyimini unutulmaz kılan ferah esanslar.', tag: 'TAZELİK', img: 'assets/sub-koku-dekor.png', link: '#' }
-                ]
-            },
-            {
-                id: 'housekeeping', title: 'Housekeeping', subs: [
-                    { title: 'Mini Bar Üniteleri', desc: 'Quiet operation and sleek aesthetic designs.', tag: 'GÜVENİLİR', img: 'assets/sub-housekeeping.png', link: '#' },
-                    { title: 'Servis Arabaları', desc: 'Operasyonel hızı artıran ergonomik taşıma çözümlerini sağlar.', tag: 'VERİMLİLİK', img: 'assets/sub-araba.png', link: '#' }
-                ]
-            },
-            {
-                id: 'bar', title: 'Bar & Servis', subs: [
-                    { title: 'Miksoloji Setleri', desc: 'Professional preparation tools for expert bartenders.', tag: 'USTALIK', img: 'assets/cat-bar.png', link: '#' },
-                    { title: 'Shot & Sunum', desc: 'Gece hayatı ve cafe konseptlerine özel cam seriler.', tag: 'MODERN', img: 'assets/cat-bar.png', link: '#' }
-                ]
-            },
-            {
-                id: 'reklam', title: 'Tanıtım & Deri', subs: [
-                    { title: 'Menü Kapları', desc: 'Özel tasarım deri ve ahşap menü çalışmaları.', tag: 'TASARIM', img: 'assets/sub-anahtarlik.png', link: '#' },
-                    { title: 'Yönlendirme', desc: 'Klasik ve dijital oda numarası - tabela çözümleri.', tag: 'KURUMSAL', img: 'assets/sub-yonlendirme.png', link: '#' }
-                ]
-            },
-            {
-                id: 'bufe', title: 'Açık Büfe', subs: [
-                    { title: 'Teşhir Standları', desc: 'Görsel şölene dönüşen katlı sunum üniteleri.', tag: 'TEŞHİR', img: 'assets/sub-teshir.png', link: '#' },
-                    { title: 'Chafing Dish', desc: 'Isı korumalı modern kapaklı sunum kapları.', tag: 'ISITMA', img: 'assets/cat-bufe.png', link: '#' }
-                ]
-            },
-            {
-                id: 'mobilya', title: 'Dış Mekan', subs: [
-                    { title: 'Rattan & Alüminyum', desc: 'Hava koşullarına tam dayanıklı bahçe mobilyaları.', tag: 'DIŞ MEKAN', img: 'assets/sub-bufe.jpg', link: '#' }
-                ]
-            },
-            {
-                id: 'teknik', title: 'Hırdavat & Teknik', subs: [
-                    { title: 'Temizlik Araçları', desc: 'Endüstriyel temizlik makineleri ve aparatları.', tag: 'HİJYEN', img: 'assets/sub-konteyner.png', link: '#' }
-                ]
-            },
-            {
-                id: 'proje', title: 'Özel Projeler', subs: [
-                    { title: 'Anahtar Teslim', desc: 'Danışmanlıktan kuruluma komple proje yönetimi.', tag: 'UZMAN', img: 'assets/about-banner.jpg', link: '#' }
-                ]
-            },
-            {
-                id: 'katalog', title: 'Dijital Katalog', subs: [
-                    { title: 'PDF İNDİR', desc: 'Tüm güncel ürün listelerimize tek tıkla ulaşın.', tag: 'İNDİR', img: 'assets/products-banner.png', link: '#' }
+                "id": "sofra",
+                "title": "Sofra & Sunum",
+                "subs": [
+                    {
+                        "title": "Porselen Grubu",
+                        "desc": "Bonna, Porland ve Kütahya Porselen'in en seçkin otel serileri.",
+                        "tag": "ÖZEL SEÇKİ",
+                        "img": "assets/sub-porselen.png",
+                        "link": "#"
+                    }
                 ]
             }
         ];
 
         let currentData = initialData;
+        let currentReferences = [];
 
         function checkAuth() {
             const pass = document.getElementById('ots-admin-pass').value;
@@ -323,6 +292,7 @@
                 document.getElementById('ots-admin-login').style.display = 'none';
                 renderAdmin();
                 loadData();
+                loadReferences();
             } else {
                 alert('Hatalı şifre!');
             }
@@ -334,12 +304,62 @@
                 if (response.ok) {
                     currentData = await response.json();
                     renderAdmin();
+                } else {
+                    console.error('Data Load Error:', response.status);
                 }
             } catch (error) {
-                console.warn('Running in static mode.');
+                console.warn('Running in static mode or server not reachable.', error);
             }
         }
 
+        async function loadReferences() {
+            try {
+                const response = await fetch('/api/references');
+                if (response.ok) {
+                    currentReferences = await response.json();
+                    renderReferences();
+                }
+            } catch (error) {
+                console.warn('Could not load references', error);
+            }
+        }
+
+        // ... (keep view switching and product logic same until saveAll) ...
+
+
+        // --- VIEW SWITCHING ---
+        function switchView(view) {
+            const prodSec = document.getElementById('ots-products-section');
+            const refSec = document.getElementById('ots-references-section');
+            const btnProd = document.getElementById('btn-view-products');
+            const btnRef = document.getElementById('btn-view-references');
+
+            if (view === 'products') {
+                prodSec.style.display = 'block';
+                refSec.style.display = 'none';
+
+                btnProd.style.background = 'var(--primary)';
+                btnProd.style.color = '#000';
+                btnProd.style.opacity = '1';
+
+                btnRef.style.background = 'transparent';
+                btnRef.style.color = '#fff';
+                btnRef.style.opacity = '0.5';
+            } else {
+                prodSec.style.display = 'none';
+                refSec.style.display = 'block';
+
+                btnProd.style.background = 'transparent';
+                btnProd.style.color = '#fff';
+                btnProd.style.opacity = '0.5';
+
+                btnRef.style.background = 'var(--primary)';
+                btnRef.style.color = '#000';
+                btnRef.style.opacity = '1';
+            }
+        }
+
+        // --- PRODUCT LOGIC ---
         function renderAdmin() {
             const mount = document.getElementById('ots-admin-mount');
             mount.innerHTML = '';
@@ -416,17 +436,76 @@
             }
         }
 
+        // --- REFERENCE LOGIC ---
+        function renderReferences() {
+            const mount = document.getElementById('ots-ref-mount');
+            mount.innerHTML = '';
+
+            if (currentReferences.length === 0) {
+                mount.innerHTML = '<p style="color:#666; font-style:italic;">Henüz referans eklenmemiş.</p>';
+            }
+
+            currentReferences.forEach((ref, idx) => {
+                const item = document.createElement('div');
+                item.className = 'ots-admin-item';
+                item.innerHTML = `
+                    <div class="ots-field"><label>REFERANS ADI (Müşteri)</label><input type="text" value="${ref.name}" onchange="updateRef(${idx}, 'name', this.value)"></div>
+                    <div class="ots-field"><label>LOGO URL (Opsiyonel)</label><input type="text" value="${ref.img}" onchange="updateRef(${idx}, 'img', this.value)"></div>
+                    <div class="ots-field" style="background:#fff; padding:10px; text-align:center; border-radius:4px; margin-top:10px;">
+                        <img src="${ref.img}" style="height:40px; object-fit:contain; opacity:${ref.img ? 1 : 0.2}" onerror="this.style.opacity=0.2">
+                        <span style="display:block; color:#000; font-size:10px; font-weight:bold; margin-top:5px;">ÖNİZLEME</span>
+                    </div>
+                    <button class="ots-btn ots-btn-delete" style="margin-top:20px; width:100%;" onclick="deleteRef(${idx})">BU REFERANSI SİL</button>
+                `;
+                mount.appendChild(item);
+            });
+        }
+
+        function updateRef(idx, key, val) {
+            currentReferences[idx][key] = val;
+            // Reuse render to update preview if img changes
+            if (key === 'img') renderReferences();
+        }
+
+        function addReference() {
+            currentReferences.push({ id: 'ref_' + Date.now(), name: 'Yeni Referans', img: '' });
+            renderReferences();
+            setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 100);
+        }
+
+        function deleteRef(idx) {
+            if (confirm('Bu referansı silmek istediğinize emin misiniz?')) {
+                currentReferences.splice(idx, 1);
+                renderReferences();
+            }
+        }
+
+        // --- SAVE ALL ---
         async function saveAll() {
             try {
-                const response = await fetch('/api/products', {
+                // Save Products
+                const resProd = await fetch('/api/products', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(currentData)
                 });
-                const result = await response.json();
-                if (result.success) alert('Başarıyla kaydedildi!');
+
+                // Save References
+                const resRef = await fetch('/api/references', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentReferences)
+                });
+
+                if (resProd.ok && resRef.ok) {
+                    alert('TÜM DEĞİŞİKLİKLER BAŞARIYLA KAYDEDİLDİ!');
+                } else {
+                    alert('Hata: Bazı veriler kaydedilemedi.\n\nServer Hatası: ' + resProd.status + ' / ' + resRef.status);
+                    console.error('Save Error:', resProd.status, resRef.status);
+                }
             } catch (error) {
-                alert('Kaydedilirken bir hata oluştu!');
+                console.error(error);
+                alert('BAĞLANTI HATASI!\n\nServer çalışmıyor olabilir veya sayfayı yanlış açtınız.\n\nHata Detayı: ' + error.message);
             }
         }
     </script>

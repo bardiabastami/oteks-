@@ -33,6 +33,30 @@ app.post('/api/products', (req, res) => {
     });
 });
 
+// References API
+const REFERENCES_FILE = path.join(__dirname, 'data', 'references.json');
+
+app.get('/api/references', (req, res) => {
+    fs.readFile(REFERENCES_FILE, 'utf8', (err, data) => {
+        if (err) {
+            // If file doesn't exist, return empty array
+            if (err.code === 'ENOENT') return res.json([]);
+            return res.status(500).json({ error: 'Failed to read data' });
+        }
+        res.json(JSON.parse(data));
+    });
+});
+
+app.post('/api/references', (req, res) => {
+    const references = req.body;
+    fs.writeFile(REFERENCES_FILE, JSON.stringify(references, null, 4), 'utf8', (err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to save data' });
+        }
+        res.json({ success: true });
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });

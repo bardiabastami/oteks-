@@ -17,7 +17,7 @@
 
         .ots-banner {
             height: 45vh;
-            background: url('assets/references-banner.jpg') no-repeat center center/cover;
+            background: url('assets/0 5 REFERENCES - CATEGORY BANNER.jpg.jpg') no-repeat center center/cover;
             display: flex;
             align-items: flex-end;
             padding: 60px 8%;
@@ -49,17 +49,18 @@
         }
 
         .ots-ref-card {
-            background: #0a0a0a;
+            background: #ffffff;
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             border: 0.5px solid transparent;
+            padding: 20px;
         }
 
         .ots-ref-card:hover {
-            background: #000;
+            background: #f0f0f0;
             z-index: 10;
             transform: scale(1.05);
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
@@ -68,7 +69,7 @@
 
         .ots-ref-card span {
             font-weight: 800;
-            color: #fff;
+            color: #000;
             font-size: 20px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -97,7 +98,7 @@
 <body class="ots-standardized">
 
     <header class="ots-header">
-        <div class="ots-logo"><a href="index.html"><img src="assets/logo.jpg" alt="OTEKS LOGO"></a></div>
+        <div class="ots-logo"><a href="index.html"><img src="oteks.svg" alt="OTEKS LOGO"></a></div>
         <nav class="ots-nav">
             <a href="hakkimizda.html">Hakkımızda</a>
             <a href="urunlerimiz.html">Ürünler</a>
@@ -127,15 +128,9 @@
             <h2
                 style="font-size:14px; color:var(--primary); text-transform:uppercase; letter-spacing:4px; font-weight:800; margin-bottom:40px;">
                 SEÇKİN İŞ ORTAKLARIMIZ</h2>
-            <div class="ots-ref-grid">
-                <div class="ots-ref-card"><span>Global Hotel</span></div>
-                <div class="ots-ref-card"><span>Azure Resort</span></div>
-                <div class="ots-ref-card"><span>Elite Cafe</span></div>
-                <div class="ots-ref-card"><span>Grand Palace</span></div>
-                <div class="ots-ref-card"><span>Sky Lounge</span></div>
-                <div class="ots-ref-card"><span>Marine Club</span></div>
-                <div class="ots-ref-card"><span>Royal Suites</span></div>
-                <div class="ots-ref-card"><span>Vista Dine</span></div>
+            <div class="ots-ref-grid" id="ref-grid">
+                <!-- Fallback content if JS fails or loading -->
+                <div class="ots-ref-card"><span>Yükleniyor...</span></div>
             </div>
         </div>
     </section>
@@ -145,6 +140,55 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        const initialRefs = [
+            { "id": "ref_1", "name": "Global Hotel", "img": "" },
+            { "id": "ref_2", "name": "Azure Resort", "img": "" },
+            { "id": "ref_3", "name": "Elite Cafe", "img": "" },
+            { "id": "ref_4", "name": "Grand Palace", "img": "" },
+            { "id": "ref_5", "name": "Sky Lounge", "img": "" },
+            { "id": "ref_6", "name": "Marine Club", "img": "" },
+            { "id": "ref_7", "name": "Royal Suites", "img": "" },
+            { "id": "ref_8", "name": "Vista Dine", "img": "" }
+        ];
+
+        async function loadReferences() {
+            let data = initialRefs;
+            try {
+                const response = await fetch('/api/references');
+                if (response.ok) {
+                    const apiData = await response.json();
+                    if (apiData.length > 0) data = apiData;
+                }
+            } catch (e) {
+                console.warn('Using static refs');
+            }
+            renderReferences(data);
+        }
+
+        function renderReferences(data) {
+            const grid = document.getElementById('ref-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            data.forEach(ref => {
+                const card = document.createElement('div');
+                card.className = 'ots-ref-card';
+
+                // If logo exists/valid, show it. Otherwise text.
+                if (ref.img && ref.img.length > 5) {
+                    card.innerHTML = `<img src="${ref.img}" alt="${ref.name}" style="max-width:80%; max-height:80%; object-fit:contain; filter:grayscale(1); opacity:0.9;">`;
+                    // Note: Grayscale to start, color on hover via CSS if needed, or just clean grayscale.
+                } else {
+                    card.innerHTML = `<span>${ref.name}</span>`;
+                }
+
+                grid.appendChild(card);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', loadReferences);
+    </script>
 </body>
 
 </html>

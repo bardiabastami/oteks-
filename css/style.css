@@ -25,6 +25,12 @@ body {
     background: #000000;
 }
 
+img,
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
 h1,
 h2,
 h3,
@@ -54,7 +60,7 @@ li {
 }
 
 .ots-logo img {
-    height: 35px;
+    height: 45px;
     filter: invert(1);
 }
 

@@ -155,7 +155,7 @@
         async function loadReferences() {
             let data = initialRefs;
             try {
-                const response = await fetch('/api/references');
+                const response = await fetch('data/references.json');
                 if (response.ok) {
                     const apiData = await response.json();
                     if (apiData.length > 0) data = apiData;

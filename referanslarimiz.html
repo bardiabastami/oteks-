@@ -83,6 +83,38 @@
             letter-spacing: 5px;
         }
 
+        .ots-ref-img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: grayscale(1);
+            opacity: 0.9;
+            display: block;
+            margin: auto;
+            transition: var(--transition);
+        }
+
+        /* Fix for Salamis Logo (Black Background JPEG) */
+        .fix-salamis {
+            filter: invert(1) grayscale(1) !important;
+            mix-blend-mode: multiply;
+            border-radius: 4px;
+            /* Soften edges */
+        }
+
+        /* Remove filter on hover for normal logos, but keep fix for Salamis */
+        .ots-ref-card:hover .ots-ref-img:not(.fix-salamis) {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .ots-ref-card:hover .fix-salamis {
+            opacity: 1;
+            transform: scale(1.1);
+            /* Keep invert for Salamis */
+        }
+
         @media (max-width: 768px) {
             .ots-banner {
                 padding: 120px 20px 60px;
@@ -186,10 +218,12 @@
                 const card = document.createElement('div');
                 card.className = 'ots-ref-card';
 
-                // If logo exists/valid, show it. Otherwise text.
+                // Specific fix for Salamis Bay (ref_13) or others if needed
+                const isSalamis = ref.id === 'ref_13' || ref.name.toLowerCase().includes('salamis');
+                const imgClass = isSalamis ? 'ots-ref-img fix-salamis' : 'ots-ref-img';
+
                 if (ref.img && ref.img.length > 5) {
-                    card.innerHTML = `<img src="${ref.img}" alt="${ref.name}" style="max-width:80%; max-height:80%; object-fit:contain; filter:grayscale(1); opacity:0.9;">`;
-                    // Note: Grayscale to start, color on hover via CSS if needed, or just clean grayscale.
+                    card.innerHTML = `<img src="${ref.img}" alt="${ref.name}" class="${imgClass}" loading="lazy">`;
                 } else {
                     card.innerHTML = `<span>${ref.name}</span>`;
                 }

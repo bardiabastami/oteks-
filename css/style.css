@@ -208,12 +208,12 @@ li {
 }
 
 .ots-mobile-nav a {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 800;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     transition: var(--transition);
 }
 

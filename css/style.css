@@ -182,7 +182,7 @@ li {
 
 @media (max-width: 1024px) {
     .ots-section {
-        padding: 80px 5%;
+        padding: 60px 20px;
     }
 }
 
@@ -271,6 +271,14 @@ li {
     .ots-banner h1 {
         font-size: 40px;
         letter-spacing: -2px;
+    }
+
+    /* Mobile Margins Fix */
+    .ots-page-hero,
+    .ots-contact-hero,
+    .ots-offer-hero,
+    .ots-banner {
+        padding: 120px 20px 60px;
     }
 }
 

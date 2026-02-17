@@ -156,9 +156,7 @@
             transition: background 0.3s ease;
         }
 
-        .ots-grid-item:hover .ots-grid-content {
-            /* Stable content */
-        }
+
 
         .ots-grid-title {
             font-size: clamp(14px, 1.8vw, 18px);
@@ -233,9 +231,20 @@
                 min-height: 250px;
             }
 
-            /* Hide center logo on mobile if it breaks flow, or keep it */
+            /* Show center logo on mobile and put it at top */
             .ots-grid-logo {
-                display: none;
+                display: flex;
+                order: -1;
+                height: 25vh;
+                /* Smaller height for logo header */
+                min-height: 150px;
+                background: #000;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .ots-center-logo-svg {
+                width: 60%;
+                /* Make logo slightly larger on mobile */
             }
         }
 

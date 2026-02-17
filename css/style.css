@@ -55,7 +55,7 @@ li {
     align-items: center;
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: saturate(180%) blur(20px);
-    z-index: 1000;
+    z-index: 2001;
     border-bottom: 1px solid var(--border);
 }
 
@@ -218,7 +218,10 @@ li {
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 3000;
+    cursor: pointer;
+    z-index: 3001;
+    position: relative;
+    /* Ensure z-index works */
 }
 
 .ots-burger span {

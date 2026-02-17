@@ -255,6 +255,45 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
+
+        /* Mobile Category Toggle */
+        .ots-cat-toggle-btn {
+            display: none;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .ots-categories-bar {
+                display: none;
+                /* Hidden by default on mobile */
+                grid-template-columns: 1fr;
+                /* Stack vertically */
+                max-height: 50vh;
+                overflow-y: auto;
+            }
+
+            .ots-categories-bar.show {
+                display: grid;
+            }
+
+            .ots-cat-toggle-btn {
+                display: block;
+            }
+
+            .ots-categories-container {
+                top: 60px;
+                /* Adjust sticky top for mobile header */
+            }
+        }
     </style>
 </head>
 
@@ -264,7 +303,8 @@
         <div class="ots-logo"><a href="index.html"><img src="oteks.svg" alt="OTEKS LOGO"></a></div>
         <nav class="ots-nav">
             <a href="hakkimizda.html">Hakkımızda</a>
-            <a href="urunlerimiz.html" class="active">Ürünler</a>
+            <a href="urunlerimiz.html" class="active">Ürünlerimiz</a>
+            <a href="referanslarimiz.html">Referanslarımız</a>
             <a href="teklif-al.html">Teklif Al</a>
             <a href="iletisim.html">İletişim</a>
         </nav>
@@ -277,7 +317,8 @@
 
     <div class="ots-mobile-nav">
         <a href="hakkimizda.html">Hakkımızda</a>
-        <a href="urunlerimiz.html" class="active">Ürünler</a>
+        <a href="urunlerimiz.html" class="active">Ürünlerimiz</a>
+        <a href="referanslarimiz.html">Referanslarımız</a>
         <a href="teklif-al.html">Teklif Al</a>
         <a href="iletisim.html">İletişim</a>
     </div>
@@ -288,6 +329,7 @@
     </div>
 
     <div class="ots-categories-container">
+        <button class="ots-cat-toggle-btn" onclick="toggleCategories()">KATEGORİLERİ GÖSTER ▼</button>
         <div class="ots-categories-bar" id="cat-tabs"></div>
     </div>
 
@@ -389,7 +431,7 @@
             },
             {
                 "id": "housekeeping",
-                "title": "Housekeeping",
+                "title": "Kat Hizmetleri & Operasyonel",
                 "subs": [
                     {
                         "title": "Mini Bar Üniteleri",
@@ -570,8 +612,7 @@
                                 <h3>${sub.title}</h3>
                                 <p>${sub.desc}</p>
                                 <div class="ots-card-meta">
-                                    <span class="ots-tag">${sub.tag}</span>
-                                    <a href="${sub.link || '#'}" target="_blank" class="ots-btn-catalog" ${!sub.link ? 'onclick="alert(\'Katalog yakında eklenecek!\'); return false;"' : ''}>
+                                    <a href="${sub.link || '#'}" download target="_blank" class="ots-btn-catalog" ${!sub.link ? 'onclick="alert(\'Katalog yakında eklenecek!\'); return false;"' : ''}>
                                         KATALOG
                                     </a>
                                 </div>
@@ -584,12 +625,32 @@
             });
         }
 
+        function toggleCategories() {
+            const bar = document.getElementById('cat-tabs');
+            const btn = document.querySelector('.ots-cat-toggle-btn');
+            bar.classList.toggle('show');
+            if (bar.classList.contains('show')) {
+                btn.textContent = 'KATEGORİLERİ GİZLE ▲';
+            } else {
+                btn.textContent = 'KATEGORİLERİ GÖSTER ▼';
+            }
+        }
+
         function showCategory(id, btn) {
             document.querySelectorAll('.ots-cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             document.querySelectorAll('.ots-category-section').forEach(s => s.classList.remove('active'));
             document.getElementById(`cat-${id}`).classList.add('active');
-            // Removed scrollIntoView as requested for Mega Menu
+
+            // Scroll to top of categories
+            const container = document.querySelector('.ots-categories-container');
+            const offset = container.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+
+            // Auto-close on mobile selection
+            if (window.innerWidth <= 1024) {
+                toggleCategories();
+            }
         }
         window.onload = renderCatalog;
     </script>

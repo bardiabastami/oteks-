@@ -36,10 +36,56 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             padding: 120px 8%;
-            align-items: start;
+            align-items: center;
         }
 
-        /* ... skipped lines ... */
+        .ots-contact-info h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .ots-info-item {
+            margin-bottom: 30px;
+        }
+
+        .ots-info-item label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .ots-info-item p {
+            font-size: 20px;
+            color: #fff;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .ots-socials {
+            display: flex;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .ots-social-link svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--primary);
+            transition: var(--transition);
+        }
+
+        .ots-social-link:hover svg {
+            fill: #fff;
+            transform: scale(1.1);
+        }
 
         .ots-map-box {
             background: #0a0a0a;

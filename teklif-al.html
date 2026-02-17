@@ -212,11 +212,8 @@
                     <div class="ots-input-group"><label>GSM NO</label><input type="tel" name="phone"
                             placeholder="+90 5XX XXX XXXX">
                     </div>
-                    <div class="ots-input-group"><label>KATEGORİ</label>
-                        <select id="category-select" name="category">
-                            <option value="" disabled selected>Yükleniyor...</option>
-                        </select>
-                    </div>
+                    <div class="ots-input-group"><label>FİRMA ADI</label><input type="text" name="company"
+                            placeholder="Şirket Adınız" required></div>
                     <div class="ots-input-group" style="grid-column: 1/-1;"><label>PROJE DETAYLARI</label><textarea
                             name="details" rows="5" placeholder="Taleplerinizi belirtiniz..."></textarea></div>
 
@@ -249,81 +246,7 @@
 
     <script src="js/main.js"></script>
     <script>
-        const initialData = [
-            {
-                id: 'sofra', title: 'Sofra & Sunum', subs: []
-            },
-            {
-                id: 'mutfak', title: 'Mutfak Ekipmanları', subs: []
-            },
-            {
-                id: 'tekstil', title: 'Tekstil & Yatak', subs: []
-            },
-            {
-                id: 'koku', title: 'Ambiyans & Koku', subs: []
-            },
-            {
-                id: 'housekeeping', title: 'Housekeeping', subs: []
-            },
-            {
-                id: 'bar', title: 'Bar & Servis', subs: []
-            },
-            {
-                id: 'reklam', title: 'Tanıtım & Deri', subs: []
-            },
-            {
-                id: 'bufe', title: 'Açık Büfe', subs: []
-            },
-            {
-                id: 'mobilya', title: 'Dış Mekan', subs: []
-            },
-            {
-                id: 'teknik', title: 'Hırdavat & Teknik', subs: []
-            },
-            {
-                id: 'proje', title: 'Özel Projeler', subs: []
-            },
-            {
-                id: 'katalog', title: 'Dijital Katalog', subs: []
-            }
-        ];
-
-        async function loadCategories() {
-            const select = document.getElementById('category-select');
-
-            // Function to populate select
-            function populate(data) {
-                select.innerHTML = '<option value="" disabled selected>Kategori Seçiniz</option>';
-                data.forEach(cat => {
-                    // Skip "Dijital Katalog" if desired, or keep it. Keeping it for consistency.
-                    // Actually usually you don't ask for a quote for "Digital Catalog" itself but let's keep it simple.
-                    if (cat.id === 'katalog') return;
-
-                    const option = document.createElement('option');
-                    option.value = cat.title;
-                    option.textContent = cat.title;
-                    select.appendChild(option);
-                });
-            }
-
-            // Load initial data first
-            populate(initialData);
-
-            // Fetch live data
-            try {
-                const response = await fetch('data/products.json');
-                if (response.ok) {
-                    const data = await response.json();
-                    populate(data);
-                }
-            } catch (error) {
-                console.warn('Could not fetch products.json, using fallback.');
-            }
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
-            loadCategories();
-
             const form = document.getElementById('offerForm');
             if (form) {
                 form.addEventListener('submit', async (e) => {

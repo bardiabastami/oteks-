@@ -99,14 +99,18 @@
         @media (max-width: 768px) {
             .ots-banner {
                 padding: 120px 20px 60px;
+                height: 40vh;
+                /* Slights adjustment for mobile */
             }
 
             .ots-banner h1 {
-                font-size: 48px;
+                font-size: 36px;
+                /* Smaller font for mobile to prevent overflow */
             }
 
             .ots-ref-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns for better visibility */
             }
         }
     </style>

@@ -162,7 +162,7 @@
     },
     {
         "id": "housekeeping",
-        "title": "Housekeeping & Operasyonel",
+        "title": "Kat Hizmetleri & Operasyonel",
         "subs": [
             {
                 "title": "Housekeeping Ekipmanları",
@@ -244,19 +244,6 @@
                 "tag": "TABELA",
                 "img": "assets/26. Reklam & Yönlendirme.png",
                 "link": "https://drive.google.com/file/d/1bElxgHWs5_edjo6Q65tZHWuD7aY-W5dJ/view?usp=drive_link"
-            }
-        ]
-    },
-    {
-        "id": "katalog",
-        "title": "Dijital Katalog",
-        "subs": [
-            {
-                "title": "PDF İNDİR",
-                "desc": "Tüm güncel ürün listelerimize tek tıkla ulaşın.",
-                "tag": "İNDİR",
-                "img": "assets/products-banner.png",
-                "link": "#"
             }
         ]
     }

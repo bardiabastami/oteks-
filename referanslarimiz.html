@@ -108,9 +108,17 @@
                 /* Smaller font for mobile to prevent overflow */
             }
 
+            .ots-section {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                overflow-x: hidden;
+            }
+
             .ots-ref-grid {
-                grid-template-columns: repeat(2, 1fr);
-                /* 2 columns for better visibility */
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+                margin: 0 auto;
+                border: none;
             }
         }
     </style>
